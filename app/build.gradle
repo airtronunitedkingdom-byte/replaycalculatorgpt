@@ -3,7 +3,26 @@ android {
  namespace 'com.replaycalculator.app'
  compileSdk 35
  defaultConfig { applicationId 'com.replaycalculator.app'; minSdk 23; targetSdk 35; versionCode 1; versionName '1.0.0' }
- buildTypes { release { minifyEnabled false } }
+ def ks = System.getenv('ANDROID_KEYSTORE_PATH')
+ def kp = System.getenv('ANDROID_KEYSTORE_PASSWORD')
+ def ka = System.getenv('ANDROID_KEY_ALIAS')
+ def ap = System.getenv('ANDROID_KEY_PASSWORD')
+ if (ks && kp && ka && ap) {
+  signingConfigs {
+   release {
+    storeFile file(ks)
+    storePassword kp
+    keyAlias ka
+    keyPassword ap
+   }
+  }
+ }
+ buildTypes {
+  release {
+   minifyEnabled false
+   if (ks && kp && ka && ap) signingConfig signingConfigs.release
+  }
+ }
  compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
 }
 
