@@ -2,7 +2,7 @@ plugins { id 'com.android.application' }
 android {
  namespace 'com.replaycalculator.app'
  compileSdk 35
- defaultConfig { applicationId 'com.replaycalculator.app'; minSdk 23; targetSdk 35; versionCode 1; versionName '1.0.0' }
+ defaultConfig { applicationId 'com.replaycalculator.app'; minSdk 23; targetSdk 35; versionCode 2; versionName '1.1.0' }
  def ks = System.getenv('ANDROID_KEYSTORE_PATH')
  def kp = System.getenv('ANDROID_KEYSTORE_PASSWORD')
  def ka = System.getenv('ANDROID_KEY_ALIAS')
