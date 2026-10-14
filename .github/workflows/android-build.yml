@@ -29,6 +29,14 @@ jobs:
         run: gradle --no-daemon :app:testDebugUnitTest
       - name: Build debug APK
         run: gradle --no-daemon :app:assembleDebug
+      - name: Build unsigned release AAB
+        run: gradle --no-daemon :app:bundleRelease
+      - name: Upload unsigned release AAB
+        uses: actions/upload-artifact@v4
+        with:
+          name: ReplayCalculator-unsigned-release-aab
+          path: app/build/outputs/bundle/release/app-release.aab
+          if-no-files-found: error
       - name: Upload testing APK
         uses: actions/upload-artifact@v4
         with:
